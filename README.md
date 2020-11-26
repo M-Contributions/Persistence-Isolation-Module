@@ -1,4 +1,4 @@
-# This is module is an abstraction to Magento 2 persistence module, it acts as an API that provides a high level policy to connect a third marty module to Magento.
+# This module is an abstraction to Magento 2 persistence module, it acts as an API that provides a high level policy to connect a third party module to Magento.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ticaje/m2-persistence.svg?style=flat-square)](https://packagist.org/packages/ticaje/m2-persistence)
 [![Quality Score](https://img.shields.io/scrutinizer/g/M-Contributions/Persistency.svg?style=flat-square)](https://scrutinizer-ci.com/g/M-Contributions/Persistency)
@@ -8,7 +8,7 @@
 
 Magento framework is a great tool for building e-commerce solutions. It did spring out its version 2 some while ago and with it, its quality
 jumped up in a tremendous way. Even so, i wanted to provide certain facilities to developers that make live easier when coding in Magento and
-repetitive tasks shows up.
+repetitive tasks show up.
 
 I must say that, and perhaps a disclaimer is lurking around, this is a series of extensions developed under S.O.L.I.D and other OO design principles
 so we'd introduce some standardization in the way we develop in Magento since its designers took this way when they decided to walk a better path for the
@@ -27,7 +27,7 @@ composer require ticaje/m2-persistence
 
 This module is about Persistence.
 Magento 2 came out with a profound redesign of the framework from many standpoints, it introduces modern(perhaps not so new) OO Design techniques
-but if you look closer, when it comes to persistence, not greater changes has developed, it continues to shape the same ORM(if it ever had something close to an ORM)
+but if you look closer, when it comes to persistence, not greater changes have developed, it continues to shape the same ORM(if it ever had something close to an ORM)
 structure, the typical Model/Resource approach remains the same.
 
 ### Problem this module solves.
@@ -37,7 +37,7 @@ This is way awkward because a bunch of classes(model, resources and collection) 
 It turns out that Magento provides the tools to avoid developer going through this over and over again every time a single Entity comes into play, not to talk
 about creating more complex Entity relations.
 
-This module actually refactors the way Magento does this so developer can focus on defining the proper entities and its relationships in a declarative way
+This module actually refactors the way Magento does this, so developer can focus on defining proper entities and their relationships in a declarative way
 simply by means of DIC a.k.a di.xml.
 
 I will provide an example of this since an image is worth a thousand words.
@@ -104,14 +104,14 @@ class Example extends ParentClass
 ```
 and that's it.
 
-In short, we're hereby are defining model, resource and collection classes to this new model.
-So developer is empowered to use it as usually he/she does it in Magento ecosystem.
+In short, we hereby are defining model, resource and collection classes to this new model.
+So, developer is empowered to use it as usually he/she does it under Magento ecosystem.
 
 ### Advantages
 
 The benefits of using this approach is not to worry about the details of repeating over and over the same classes structure
-when creating models in Magento.
-The greatest benefits comes when Magento performs an upgrade in the framework and any of this classes are affected by it.
+when creating models in Magento. This is error prone and increases coupling to the Framework.
+The greatest benefits comes when Magento performs an upgrade on the framework and any of these classes are affected by it.
 This module acts as a gateway so developer(this module's maintainer) just changes this modules to be compliant with new specifications
 and consumers(modules using this module) remain unaware of it. Just picture out the case where you have many custom models defined
 all over your system, you keep your self from doing a bunch of changes in many places since your logic remains Framework independent. 
