@@ -1,4 +1,4 @@
-# This is module is an abstraction to Magento 2 persistence module, it acts as a middleware that provides a high level API to connect a third marty module to Magento.
+# This is module is an abstraction to Magento 2 persistence module, it acts as an API that provides a high level policy to connect a third marty module to Magento.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ticaje/m2-persistence.svg?style=flat-square)](https://packagist.org/packages/ticaje/m2-persistence)
 [![Quality Score](https://img.shields.io/scrutinizer/g/M-Contributions/Persistency.svg?style=flat-square)](https://scrutinizer-ci.com/g/M-Contributions/Persistency)
@@ -51,20 +51,25 @@ Once developer has defined the schema(through traditional Magento channels) the 
 the following xml within module's di.xml file.
 
 ```xml
+    <!-- Resource definition -->
     <virtualType name="Vendor\Module\Model\Resource\Example" type="Ticaje\Persistence\Entity\Resource\Base">
         <arguments>
             <argument name="tableName" xsi:type="string">example_table_name</argument>
             <argument name="referenceId" xsi:type="string">entity_id</argument>
         </arguments>
     </virtualType>
+    <!-- Resource definition -->
 
-    <virtualType name="Vendor\Module\Model\Example" type="Ticaje\Persistence\Entity\Base">
+    <!-- Model Recipe, VT was not able to achieve -->
+    <type name="Vendor\Module\Model\Example">
         <arguments>
             <argument name="resourceModelClass" xsi:type="string">Vendor\Module\Model\Resource\Example</argument>
-            <argument name="cacheTag" xsi:type="string">example_table_name</argument>
+            <argument name="cacheTag" xsi:type="const">example_table_name</argument>
         </arguments>
-    </virtualType>
+    </type>
+    <!-- Model Recipe -->
 
+    <!-- Collection definition -->
     <virtualType name="Vendor\Module\Model\Example\Resource\Example\Collection" type="Ticaje\Persistence\Entity\Resource\Collection\Base">
         <arguments>
             <argument name="idFieldName" xsi:type="const">Vendor\Module\Model\ExampleInterface::KEY_ID</argument>
@@ -72,7 +77,32 @@ the following xml within module's di.xml file.
             <argument name="resourceModel" xsi:type="string">Vendor\Module\Model\Example\Resource</argument>
         </arguments>
     </virtualType>
+    <!-- Collection definition -->
 ```
+
+Out of some inconsistency on wiring up the framework, we must create the concrete Model class that inherits from our Base Entity class.
+We did try, just like with resource and collection, to define it as a virtual type but there is no way to achieve the instantiation
+of the object, any help will be appreciated.
+
+The Model Class for our: Example.
+
+```php
+<?php
+declare(strict_types=1);
+
+namespace Vendor\Module\Model;
+
+use Ticaje\Persistence\Entity\Base as ParentClass;
+
+/**
+ * Class Example
+ * @package Vendor\Module\Model
+ */
+class Example extends ParentClass
+{
+}
+```
+and that's it.
 
 In short, we're hereby are defining model, resource and collection classes to this new model.
 So developer is empowered to use it as usually he/she does it in Magento ecosystem.
