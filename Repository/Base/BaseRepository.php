@@ -28,6 +28,8 @@ use Throwable;
  */
 class BaseRepository implements BaseRepositoryInterface
 {
+    use BaseTrait;
+
     private $object; // The current model class name
 
     private $collection; // The current model collection class name
@@ -51,6 +53,7 @@ class BaseRepository implements BaseRepositoryInterface
         SearchResultsInterfaceFactory $searchResultsFactory,
         ObjectManagerInterface $objectManager
     ) {
+
         $this->object = $object;
         $this->collection = $collection;
         $this->searchResultsFactory = $searchResultsFactory;
