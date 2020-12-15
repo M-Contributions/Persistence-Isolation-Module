@@ -19,6 +19,7 @@ use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Magento\Framework\ObjectManagerInterface; // For the sake of simplicity we're using Magento OM.
 use Exception;
 use Throwable;
+use Ticaje\Contract\Traits\Singleton;
 
 /**
  * Class BaseRepository
@@ -28,7 +29,7 @@ use Throwable;
  */
 class BaseRepository implements BaseRepositoryInterface
 {
-    use BaseTrait;
+    use BaseTrait, Singleton;
 
     private $object; // The current model class name
 
