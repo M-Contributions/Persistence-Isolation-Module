@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-
 /**
  * Persistence Repository Interface
  * @category    Ticaje
@@ -14,6 +13,7 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Model\AbstractModel;
 
 /**
  * Interface PersistenceRepositoryInterface
@@ -23,13 +23,15 @@ interface BaseRepositoryInterface
 {
     /**
      * @param $object
+     *
      * @return mixed
      * @throws CouldNotSaveException
      */
-    public function save($object);
+    public function save(AbstractModel $object);
 
     /**
      * @param $id
+     *
      * @return mixed
      * @throws NoSuchEntityException
      */
@@ -37,24 +39,28 @@ interface BaseRepositoryInterface
 
     /**
      * @param SearchCriteriaInterface $criteria
+     *
      * @return mixed|null
      */
     public function getSingle(SearchCriteriaInterface $criteria);
 
     /**
      * @param SearchCriteriaInterface $criteria
+     *
      * @return SearchResultsInterface
      */
     public function getList(SearchCriteriaInterface $criteria): SearchResultsInterface;
 
     /**
      * @param $object
+     *
      * @return array
      */
-    public function delete($object): array;
+    public function delete(AbstractModel $object): array;
 
     /**
      * @param $id
+     *
      * @return array
      */
     public function deleteById($id): array;
