@@ -31,7 +31,7 @@
       "url": "https://repo.magento.com/"
     }
   ],
-  "version": "1.0.5",
+  "version": "1.1.0",
   "autoload": {
     "files": [
       "registration.php"
