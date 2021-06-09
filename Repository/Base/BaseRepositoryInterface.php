@@ -9,59 +9,12 @@ declare(strict_types=1);
 
 namespace Ticaje\Persistence\Repository\Base;
 
-use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Api\SearchResultsInterface;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Model\AbstractModel;
+use Ticaje\Contract\Persistence\Repository\RepositoryInterface;
 
 /**
  * Interface PersistenceRepositoryInterface
  * @package Ticaje\Persistence\Repository\Base
  */
-interface BaseRepositoryInterface
+interface BaseRepositoryInterface extends RepositoryInterface
 {
-    /**
-     * @param $object
-     *
-     * @return mixed
-     * @throws CouldNotSaveException
-     */
-    public function save(AbstractModel $object);
-
-    /**
-     * @param $id
-     *
-     * @return mixed
-     * @throws NoSuchEntityException
-     */
-    public function getById($id);
-
-    /**
-     * @param SearchCriteriaInterface $criteria
-     *
-     * @return mixed|null
-     */
-    public function getSingle(SearchCriteriaInterface $criteria);
-
-    /**
-     * @param SearchCriteriaInterface $criteria
-     *
-     * @return SearchResultsInterface
-     */
-    public function getList(SearchCriteriaInterface $criteria): SearchResultsInterface;
-
-    /**
-     * @param $object
-     *
-     * @return array
-     */
-    public function delete(AbstractModel $object): array;
-
-    /**
-     * @param $id
-     *
-     * @return array
-     */
-    public function deleteById($id): array;
 }

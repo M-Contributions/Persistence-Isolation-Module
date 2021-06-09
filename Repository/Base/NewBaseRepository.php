@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Ticaje\Persistence\Repository\Base;
 
 use Exception;
-use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Magento\Framework\Exception\CouldNotSaveException;
@@ -18,6 +17,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\ObjectManagerInterface;
 use Throwable;
+use Ticaje\Contract\Persistence\Entity\EntityInterface;
 
 /**
  * Class NewBaseRepository
@@ -53,7 +53,7 @@ class NewBaseRepository implements BaseRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function save(AbstractModel $object)
+    public function save(EntityInterface $object): EntityInterface
     {
         try {
             $object->getResource()->save($object);
@@ -67,7 +67,7 @@ class NewBaseRepository implements BaseRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getById($id)
+    public function getById(int $id): ?EntityInterface
     {
         /** @var AbstractModel $object */
         $object = $this->objectManager->create($this->object);
@@ -82,7 +82,7 @@ class NewBaseRepository implements BaseRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getSingle(SearchCriteriaInterface $criteria)
+    public function getSingle($criteria): ?EntityInterface
     {
         $list = $this->getList($criteria);
 
@@ -96,7 +96,7 @@ class NewBaseRepository implements BaseRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getList(SearchCriteriaInterface $criteria = null): SearchResultsInterface
+    public function getList($criteria = null): SearchResultsInterface
     {
         $collection = $this->objectManager->get($this->collection);
         if ($criteria) {
@@ -114,7 +114,7 @@ class NewBaseRepository implements BaseRepositoryInterface
      * We're dealing here with some high level issue like returning an object with information about deleting action
      * Perhaps a returning normalized interface would be more convenient instead
      */
-    public function delete(AbstractModel $object): array
+    public function delete(EntityInterface $object): array
     {
         $result = [
             'success' => true,
@@ -135,7 +135,7 @@ class NewBaseRepository implements BaseRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function deleteById($id): array
+    public function deleteById(int $id): array
     {
         $object = $this->getById($id);
         $result = $this->delete($object);
