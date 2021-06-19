@@ -1,8 +1,10 @@
 # This module is an abstraction to Magento 2 persistence module, it acts as an API that provides a high level policy to connect a third party module to Magento.
 
+[![GPLv3 License](https://img.shields.io/badge/license-GPLv3-marble.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ticaje/m2-persistence.svg?style=flat-square)](https://packagist.org/packages/ticaje/m2-persistence)
 [![Quality Score](https://img.shields.io/scrutinizer/g/M-Contributions/Persistency.svg?style=flat-square)](https://scrutinizer-ci.com/g/M-Contributions/Persistency)
 [![Total Downloads](https://img.shields.io/packagist/dt/ticaje/m2-persistence.svg?style=flat-square)](https://packagist.org/packages/ticaje/m2-persistence)
+[![Blog](https://img.shields.io/badge/Blog-hectorbarrientos.com-magenta)](https://hectorbarrientos.com)
 
 ## Preface
 
