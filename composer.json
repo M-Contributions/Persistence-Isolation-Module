@@ -13,8 +13,8 @@
   "description": "Middleware to Magento 2 persistency",
   "type": "magento2-module",
   "require": {
-    "php": "^7.0",
-    "ticaje/design-by-contract": "^1.0"
+    "php": "^7.0 | ^8.0",
+    "ticaje/design-by-contract": "^2.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "~2.14.0",
